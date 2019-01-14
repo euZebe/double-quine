@@ -26,6 +26,21 @@ describe("Chronometer", () => {
     expect(r.getByTestId("display")).toHaveTextContent("01:00:03");
   });
 
+  it("should call play callback when chronometer is started", () => {
+    const playCallback = jest.fn();
+    const pauseCallback = jest.fn();
+    const r = render(
+      <Chronometer onPlay={playCallback} onPause={pauseCallback} />
+    );
+    r.getByTestId("play").click();
+    expect(playCallback).toHaveBeenCalledTimes(1);
+    expect(pauseCallback).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(200);
+    r.getByTestId("pause").click();
+    expect(playCallback).toHaveBeenCalledTimes(1);
+    expect(pauseCallback).toHaveBeenCalledWith(200);
+  });
+
   it("should invoke callback when stop button is clicked, and should not count elapsed time after", () => {
     const chronoStopped = jest.fn();
     const r = render(<Chronometer onStop={chronoStopped} />);
@@ -63,4 +78,20 @@ describe("Chronometer", () => {
     expect(r.queryByTestId("play")).toBeNull();
     expect(r.queryByTestId("pause")).toBeInTheDocument();
   });
+
+  it("should hide all buttons once stopped", () => {
+    const r = render(<Chronometer hideAllButtonsWhenStopped />);
+    r.getByTestId("play").click();
+    jest.advanceTimersByTime(200);
+    r.getByTestId("stop").click();
+    expect(r.queryByTestId("play")).toBeNull();
+    expect(r.queryByTestId("pause")).toBeNull();
+    expect(r.queryByTestId("stop")).toBeNull();
+    expect(r.queryByTestId("reset")).toBeNull();
+  });
+
+  it('should hide stop button if specified in props', () => {
+    const r = render(<Chronometer hideStop /> );
+    expect(r.queryByTestId("stop")).toBeNull();
+  })
 });
