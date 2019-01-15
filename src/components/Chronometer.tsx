@@ -1,13 +1,17 @@
-import * as React from "react";
+import React from "react";
 
-// TODO: add hideStop, hidePlayPause
+// TODO: styles
 
 interface ChronometerProps {
   onStop?: (duration: number) => void;
   onPlay?: () => void;
   onPause?: (duration: number) => void;
-  hideStop?: boolean;
+  onReset?: () => void;
+  hideStopButton?: boolean;
+  hideResetButton?: boolean;
   hideAllButtonsWhenStopped?: boolean;
+  buttonsAs?: any; // React.ComponentType<any>
+  startNow?: boolean;
 }
 
 interface ChronometerState {
@@ -21,10 +25,26 @@ interface ChronometerState {
 const STEP_TIME = 100;
 
 class Chronometer extends React.PureComponent<ChronometerProps> {
+  static defaultProps = {
+    CustomButton: "button"
+  };
+
   state: ChronometerState = { elapsedTime: 0, isPlaying: false };
 
   componentWillUnmount() {
     this.stop();
+  }
+
+  componentDidMount() {
+    if (this.props.startNow) {
+      this.play();
+    }
+  }
+
+  componentDidUpdate(prevProps: ChronometerProps) {
+    if (!prevProps.startNow && this.props.startNow) {
+      this.play();
+    }
   }
 
   play = () => {
@@ -61,13 +81,15 @@ class Chronometer extends React.PureComponent<ChronometerProps> {
 
   reset = () => {
     this.setState({ elapsedTime: 0 });
+
+    const { onReset } = this.props;
+    if (onReset) onReset();
   };
 
   onTwoDigits = (value: number) => value.toString().padStart(2, "0");
 
   renderElapsedTime() {
     const { elapsedTime } = this.state;
-    if (!elapsedTime) return "00:00";
     const elapsedTimeAsDate = new Date(elapsedTime);
     const formattedTime = [
       elapsedTimeAsDate.getUTCHours(),
@@ -83,7 +105,12 @@ class Chronometer extends React.PureComponent<ChronometerProps> {
 
   render() {
     const { isPlaying, elapsedTime } = this.state;
-    const { hideAllButtonsWhenStopped, hideStop } = this.props;
+    const {
+      hideAllButtonsWhenStopped,
+      hideStopButton,
+      hideResetButton,
+      buttonsAs: CustomButton
+    } = this.props;
 
     if (hideAllButtonsWhenStopped && !isPlaying && elapsedTime) {
       return this.renderElapsedTime();
@@ -93,22 +120,24 @@ class Chronometer extends React.PureComponent<ChronometerProps> {
       <React.Fragment>
         {this.renderElapsedTime()}
         {isPlaying ? (
-          <button onClick={this.pause} data-testid="pause">
+          <CustomButton role="button" onClick={this.pause} data-testid="pause">
             ⏸️
-          </button>
+          </CustomButton>
         ) : (
-          <button onClick={this.play} data-testid="play">
+          <CustomButton role="button" onClick={this.play} data-testid="play">
             ▶
-          </button>
+          </CustomButton>
         )}
-        {!hideStop && (
-          <button onClick={this.stop} data-testid="stop">
+        {!hideStopButton && (
+          <CustomButton role="button" onClick={this.stop} data-testid="stop">
             ⬛
-          </button>
+          </CustomButton>
         )}
-        <button onClick={this.reset} data-testid="reset">
-          🔃
-        </button>
+        {!hideResetButton && (
+          <CustomButton role="button" onClick={this.reset} data-testid="reset">
+            🔃
+          </CustomButton>
+        )}
       </React.Fragment>
     );
   }
