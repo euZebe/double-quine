@@ -38,6 +38,16 @@ describe("NumbersBoard", () => {
     expect(r.getAllByTestId("picked")).toHaveLength(1);
   });
 
+  it("should call onValuePicked when a value is picked", () => {
+    const pick = jest.fn();
+    const r = render(<NumbersBoard pickedValues={[]} onValuePicked={pick} />);
+    r.getByText("24").click();
+    r.getByText("42").click();
+    expect(pick).toHaveBeenCalledTimes(2);
+    expect(pick).toHaveBeenNthCalledWith(1, 24);
+    expect(pick).toHaveBeenNthCalledWith(2, 42);
+  });
+
   test("component is accessible", async () => {
     const { container } = render(<NumbersBoard pickedValues={[1, 4, 33]} />);
     const results = await axe(container.innerHTML);

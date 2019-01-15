@@ -4,7 +4,7 @@ import NumberCell from "./NumberCell";
 interface NumbersBoardProps {
   pickedValues: number[];
   rows?: number;
-  handleValuePicked?: (value: number) => void;
+  onValuePicked?: (value: number) => void;
 }
 
 interface NumbersBoardState {
@@ -36,6 +36,9 @@ class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
         pickedValues: [...pickedValues, value]
       });
     }
+
+    const { onValuePicked } = this.props;
+    if (onValuePicked) onValuePicked(value);
   };
 
   render() {
