@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Game } from "./DayContext";
+import { GameType } from "./DayContext";
 import PickedNumber from "./PickedNumber";
 
 interface PickedNumbersListProps {
-  game: Game;
+  game: GameType;
 }
 
 const PickedNumbersList: React.FunctionComponent<PickedNumbersListProps> = ({

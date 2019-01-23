@@ -1,13 +1,13 @@
 import * as React from "react";
 
-export interface Game {
+export interface GameType {
   pickedValues: number[];
   startTime?: Date;
   duration?: number;
 }
 
 export interface IDayContext {
-  games: Game[];
+  games: GameType[];
 }
 
 const DayContext = React.createContext<IDayContext>({ games: [] });

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Game } from "./DayContext";
+import { GameType } from "./DayContext";
 
 interface PickedNumberProps {
   value: number;
