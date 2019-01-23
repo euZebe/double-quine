@@ -8,8 +8,12 @@ export interface GameType {
 
 export interface IDayContext {
   games: GameType[];
+  toggleValue: (gameID: number, value: number) => void;
 }
 
-const DayContext = React.createContext<IDayContext>({ games: [] });
+const DayContext = React.createContext<IDayContext>({
+  games: [],
+  toggleValue: () => {}
+});
 
 export default DayContext;
