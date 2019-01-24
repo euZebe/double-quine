@@ -1,35 +1,50 @@
 import * as React from "react";
-import DayContext, { GameType } from "../components/DayContext";
 import { RouteComponentProps } from "react-router";
 import GameComponent from "./GameComponent";
+import { inject, observer } from "mobx-react";
+import { GamesStore } from "../store/GamesStore";
+import { action } from "mobx";
 
-interface GameParams {
+export interface GameParams {
   id: string;
 }
 
-class GamePage extends React.Component<RouteComponentProps<GameParams>> {
+export interface OwnProps {
+  gamesStore: GamesStore;
+}
 
+@inject("gamesStore")
+@observer
+class GamePage extends React.Component<
+  RouteComponentProps<GameParams> & OwnProps
+> {
 
-  getIDAsNumber(): number {
-    return Number.parseInt(this.getID());
+  @action
+  componentDidMount() {
+    this.props.gamesStore.currentGameIndex = this.getIDAsNumber();
   }
 
   getID(): string {
     return this.props.match.params.id;
   }
+  getIDAsNumber(): number {
+    return Number.parseInt(this.getID());
+  }
+
+  @action
+  toggleValue = (value: number) => {
+    const { gamesStore } = this.props;
+    gamesStore.toggleValue(this.getIDAsNumber(), value);
+  };
 
   render() {
+    const { games } = this.props.gamesStore;
+    const game = games[this.getIDAsNumber()];
     return (
-      <DayContext.Consumer>
-        {({ games, toggleValue }) => {
-          const game = games[this.getIDAsNumber()] || this.state;
-          return (
-            <GameComponent game={game} handleValuePicked={(value) => {
-              toggleValue(this.getIDAsNumber(), value);
-            }} />
-          );
-        }}
-      </DayContext.Consumer>
+      <GameComponent
+        game={game}
+        handleValuePicked={this.toggleValue}
+      />
     );
   }
 }

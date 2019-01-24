@@ -2,13 +2,13 @@ import * as React from "react";
 import Button from "@material-ui/core/Button";
 import PickedNumber from "../PickedNumber";
 
-interface CellProps {
+export interface CellProps {
   value: number;
   on: boolean;
   toggleNumber: (value: number) => void;
 }
 
-export default class NumberCell extends React.Component<CellProps> {
+export default class NumberCell extends React.PureComponent<CellProps> {
   handleClick = () => {
     const { value, toggleNumber } = this.props;
     toggleNumber(value);
@@ -18,9 +18,8 @@ export default class NumberCell extends React.Component<CellProps> {
     return (
       <Button
         onClick={this.handleClick}
-        variant={"outlined"}
+        variant="outlined"
         fullWidth
-        disableRipple
       >
         <PickedNumber {...this.props} />
       </Button>

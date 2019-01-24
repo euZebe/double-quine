@@ -4,6 +4,7 @@ import PickedNumbersList from "../components/PickedNumbersList";
 import NumbersBoard from "../components/NumbersBoard/NumbersBoard";
 import { GameType } from "../components/DayContext";
 import Button from "@material-ui/core/Button";
+import { observer } from "mobx-react";
 
 interface Props {
   game: GameType;
@@ -21,4 +22,4 @@ const GameComponent: React.FunctionComponent<Props> = ({ game, handleValuePicked
   </>
 );
 
-export default GameComponent;
+export default observer(GameComponent);

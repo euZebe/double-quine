@@ -1,5 +1,4 @@
 import * as React from "react";
-import { GameType } from "./DayContext";
 
 interface PickedNumberProps {
   value: number;
@@ -26,18 +25,18 @@ const styledAvailable = {
   color: "grey"
 };
 
-const PickedNumber: React.FunctionComponent<PickedNumberProps> = ({
-  value,
-  on
-}) => {
-  return (
-    <div
-      data-testid={on ? "picked" : "available"}
-      style={on ? stylePicked : styledAvailable}
-    >
-      {value}
-    </div>
-  );
-};
+class PickedNumber extends React.PureComponent<PickedNumberProps> {
+  render() {
+    const { value, on } = this.props;
+    return (
+      <div
+        data-testid={on ? "picked" : "available"}
+        style={on ? stylePicked : styledAvailable}
+      >
+        {value}
+      </div>
+    );
+  }
+}
 
 export default PickedNumber;
