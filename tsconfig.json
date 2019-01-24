@@ -18,9 +18,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["cypress", "../cypress-testing-library/typings"]
   },
   "include": [
-    "src"
+    "src",
+    "../../node_modules/cypress",
+    "cypress/**/*.ts"
   ]
 }
