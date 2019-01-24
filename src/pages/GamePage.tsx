@@ -21,7 +21,11 @@ class GamePage extends React.Component<
 
   @action
   componentDidMount() {
-    this.props.gamesStore.currentGameIndex = this.getIDAsNumber();
+    const {gamesStore} = this.props;
+    gamesStore.currentGameIndex = this.getIDAsNumber();
+    if (this.getIDAsNumber() >= gamesStore.games.length) {
+      gamesStore.initiateNewGame();
+    }
   }
 
   getID(): string {
@@ -39,6 +43,7 @@ class GamePage extends React.Component<
 
   render() {
     const { games } = this.props.gamesStore;
+    if (this.getIDAsNumber() >= games.length) return '';
     const game = games[this.getIDAsNumber()];
     return (
       <GameComponent
