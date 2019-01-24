@@ -6,8 +6,8 @@ interface PickedNumberProps {
 }
 
 const stylePicked = {
-  width: "2rem",
-  height: "2rem",
+  width: "2.5rem",
+  height: "2.5rem",
   border: "5px solid #33e8",
   borderRadius: "2rem",
   margin: "3px",

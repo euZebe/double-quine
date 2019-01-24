@@ -14,15 +14,17 @@ interface Props {
 class App extends React.Component<Props> {
   render() {
     return (
-      <Provider gamesStore={this.props.store}>
-        <Router>
-          <div>
-            <DevTools />
-            <Route path="/" exact component={Home} />
-            <Route path="/game/:id" component={GamePage} />
-          </div>
-        </Router>
-      </Provider>
+      <>
+        <Provider gamesStore={this.props.store}>
+          <Router>
+            <div>
+              <DevTools />
+              <Route path="/" exact component={Home} />
+              <Route path="/game/:id" component={GamePage} />
+            </div>
+          </Router>
+        </Provider>
+      </>
     );
   }
 }

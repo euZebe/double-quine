@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PickedNumbersList from "../components/PickedNumbersList";
 import NumbersBoard from "../components/NumbersBoard/NumbersBoard";
 import { GameType } from "../components/DayContext";
-import Button from "@material-ui/core/Button";
+import { Button } from "semantic-ui-react";
 import { observer } from "mobx-react";
 
 interface Props {
@@ -17,7 +17,7 @@ const GameComponent: React.FunctionComponent<Props> = ({ game, handleValuePicked
     <PickedNumbersList game={game} />
 
     <Link to="/">
-      <Button variant="contained">Fin de partie</Button>
+      <Button color="violet">Fin de partie</Button>
     </Link>
   </>
 );

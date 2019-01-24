@@ -1,6 +1,8 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
+import { Button } from "semantic-ui-react";
 import PickedNumber from "../PickedNumber";
+
+const containerStyle = { display: "flex", justifyContent: "center" };
 
 export interface CellProps {
   value: number;
@@ -16,12 +18,10 @@ export default class NumberCell extends React.PureComponent<CellProps> {
 
   render() {
     return (
-      <Button
-        onClick={this.handleClick}
-        variant="outlined"
-        fullWidth
-      >
-        <PickedNumber {...this.props} />
+      <Button onClick={this.handleClick} basic fluid>
+        <div style={containerStyle}>
+          <PickedNumber {...this.props} />
+        </div>
       </Button>
     );
   }
