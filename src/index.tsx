@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { GamesStore } from "./store/GamesStore";
+import "semantic-ui-css/semantic.min.css";
 
 if (process.env.NODE_ENV !== "production") {
   const { whyDidYouUpdate } = require("why-did-you-update");

@@ -18,8 +18,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "experimentalDecorators": true,
-    "types": ["cypress", "../cypress-testing-library/typings"]
+    "experimentalDecorators": true
   },
   "include": [
     "src",

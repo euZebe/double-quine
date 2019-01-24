@@ -1,14 +1,14 @@
 import { GameType } from "../components/DayContext";
-import { action, autorun, observable } from "mobx";
+import { action, autorun, observable, toJS } from "mobx";
+
+const NEW_GAME_TEMPLATE = {pickedValues: []};
 
 export class GamesStore {
   constructor() {
     autorun(() => {
-      if (this.currentGameIndex < 0) return;
-      const { pickedValues } = this.games[this.currentGameIndex];
-      localStorage.setItem(
-        this.currentGameIndex.toString(),
-        JSON.stringify({ pickedValues })
+      this.persistGame(
+        this.currentGameIndex,
+        this.games[this.currentGameIndex]
       );
     });
   }
@@ -38,6 +38,17 @@ export class GamesStore {
       const updatedGame = { pickedValues: [...pickedValues, value] };
       this.games.splice(gameIndex, 1, updatedGame);
       // this.persistGame(gameID.toString(), updatedGame);
+    }
+  }
+
+  @action
+  initiateNewGame(): void {
+    this.games.push(NEW_GAME_TEMPLATE);
+  }
+
+  private persistGame(gameIndex: number, game: GameType) {
+    if (this.currentGameIndex >= 0 && this.currentGameIndex < this.games.length){
+      localStorage.setItem(gameIndex.toString(), JSON.stringify(toJS(game)));
     }
   }
 }
