@@ -18,7 +18,7 @@ export default class NumberCell extends React.PureComponent<CellProps> {
 
   render() {
     return (
-      <Button onClick={this.handleClick} basic fluid>
+      <Button onClick={this.handleClick} basic fluid className="nomargin">
         <div style={containerStyle}>
           <PickedNumber {...this.props} />
         </div>

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Header } from "semantic-ui-react";
 import { GamesStore } from "../store/GamesStore";
 import { GameType } from "../components/DayContext";
+import TrashIcon from "../components/TrashIcon";
 
 interface GameCardProps {
   game: GameType;
@@ -17,7 +18,9 @@ const GameCard: React.FunctionComponent<GameCardProps> = ({ game, index }) => {
       meta={`${game.pickedValues.length} tirage${
         game.pickedValues.length > 1 ? "s" : ""
       }`}
-      description={game.pickedValues.join(", ")}
+      description={
+        <span data-testid="game-card">{game.pickedValues.join(", ")}</span>
+      }
       extra={
         <Link to={`/game/${index}`}>
           <Button basic color="violet">
@@ -36,27 +39,54 @@ const NewGameCard: React.FunctionComponent<{ newIndex: number }> = ({
     description="Démarrer nouvelle partie"
     extra={
       <Link to={`/game/${newIndex}`}>
-        <Button color="violet">Jouer</Button>
+        <Button color="violet">Nouvelle partie</Button>
       </Link>
     }
   />
 );
 
+function handleTrashAll(gameStore: GamesStore) {
+  if (window.confirm("Voulez-vous supprimer toutes les parties ?")) {
+    gameStore.trashAllGames();
+  }
+}
+
 const Home: React.FunctionComponent<{ gamesStore: GamesStore }> = ({
   gamesStore
 }) => (
-  <Card.Group>
-    {gamesStore.games &&
-      [
-        ...gamesStore.games.map((game, index) => (
-          <GameCard key={index} game={game} index={index} />
-        )),
-        <NewGameCard
-          newIndex={gamesStore.games.length}
-          key={gamesStore.games.length}
-        />
-      ].reverse()}
-  </Card.Group>
+  <>
+    <Button
+      as="div"
+      color="violet"
+      role="button"
+      aria-label="clear all games"
+      tabIndex={0}
+      style={{
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        borderRadius: "2rem",
+        margin: 0,
+        maxWidth: "56px",
+        maxHeight: "56px"
+      }}
+      onClick={() => handleTrashAll(gamesStore)}
+    >
+      <TrashIcon />
+    </Button>
+    <Card.Group>
+      {gamesStore.games &&
+        [
+          ...gamesStore.games.map((game, index) => (
+            <GameCard key={index} game={game} index={index} />
+          )),
+          <NewGameCard
+            newIndex={gamesStore.games.length}
+            key={gamesStore.games.length}
+          />
+        ].reverse()}
+    </Card.Group>
+  </>
 );
 
 export default inject("gamesStore")(observer(Home));

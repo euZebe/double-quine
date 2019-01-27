@@ -46,6 +46,13 @@ export class GamesStore {
     this.games.push(NEW_GAME_TEMPLATE);
   }
 
+  @action
+  trashAllGames(): void {
+    this.games.splice(0, this.games.length);
+    this.currentGameIndex = -1;
+    localStorage.clear();
+  }
+
   private persistGame(gameIndex: number, game: GameType) {
     if (this.currentGameIndex >= 0 && this.currentGameIndex < this.games.length){
       localStorage.setItem(gameIndex.toString(), JSON.stringify(toJS(game)));
