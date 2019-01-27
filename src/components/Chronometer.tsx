@@ -26,7 +26,7 @@ const STEP_TIME = 100;
 
 class Chronometer extends React.PureComponent<ChronometerProps> {
   static defaultProps = {
-    CustomButton: "button"
+    buttonsAs: "button"
   };
 
   state: ChronometerState = { elapsedTime: 0, isPlaying: false };
