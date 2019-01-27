@@ -26,13 +26,17 @@ class Row extends React.Component<{children: ReactElement<CellProps>[]}> {
   }
 }
 
+const containerStyle = {
+  gridArea: "board"
+}
+
 class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
 
   render() {
     const { pickedValues, onValuePicked } = this.props;
     const { rows = 9 } = this.props;
     return (
-      <div>
+      <div style={containerStyle}>
         {Array(rows)
           .fill(null)
           .map((_: number, rowIndex: number) => {

@@ -4,6 +4,7 @@ export interface GameType {
   pickedValues: number[];
   startTime?: Date;
   duration?: number;
+  isStarted?: boolean;
 }
 
 export interface IDayContext {

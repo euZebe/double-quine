@@ -18,10 +18,11 @@ export interface OwnProps {
 class GamePage extends React.Component<
   RouteComponentProps<GameParams> & OwnProps
 > {
+  state = { isStarted: false };
 
   @action
   componentDidMount() {
-    const {gamesStore} = this.props;
+    const { gamesStore } = this.props;
     gamesStore.currentGameIndex = this.getIDAsNumber();
     if (this.getIDAsNumber() >= gamesStore.games.length) {
       gamesStore.initiateNewGame();
@@ -39,16 +40,26 @@ class GamePage extends React.Component<
   toggleValue = (value: number) => {
     const { gamesStore } = this.props;
     gamesStore.toggleValue(this.getIDAsNumber(), value);
+    this.setState({ isStarted: true });
+  };
+
+  @action
+  handleDuration = (value: number) => {
+    const { gamesStore } = this.props;
+    gamesStore.setDuration(this.getIDAsNumber(), value);
   };
 
   render() {
     const { games } = this.props.gamesStore;
-    if (this.getIDAsNumber() >= games.length) return '';
+    if (this.getIDAsNumber() >= games.length) return "";
     const game = games[this.getIDAsNumber()];
+    const { isStarted } = this.state;
     return (
       <GameComponent
         game={game}
+        isStarted={isStarted}
         handleValuePicked={this.toggleValue}
+        setDuration={this.handleDuration}
       />
     );
   }

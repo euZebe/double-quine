@@ -1,35 +1,37 @@
 import React from "react";
 
-// TODO: styles
-
 interface ChronometerProps {
-  onStop?: (duration: number) => void;
-  onPlay?: () => void;
-  onPause?: (duration: number) => void;
-  onReset?: () => void;
-  hideStopButton?: boolean;
-  hideResetButton?: boolean;
-  hideAllButtonsWhenStopped?: boolean;
-  buttonsAs?: any; // React.ComponentType<any>
+  onStop: (duration: number) => void;
   startNow?: boolean;
+  timeFromPastSession: number;
 }
 
 interface ChronometerState {
-  elapsedTime: number;
-  pauseStartTime?: number;
-  pausedTime?: number;
-  interval?: any;
-  isPlaying: boolean;
+  currentInterval?: any;
+  elapsedTime?: number;
 }
 
-const STEP_TIME = 100;
+const STEP_TIME = 1000;
 
-class Chronometer extends React.PureComponent<ChronometerProps> {
+const containerStyle = {
+  gridArea: "chrono",
+  alignSelf: "start",
+  justifySelf: "end"
+};
+
+class Chronometer extends React.PureComponent<
+  ChronometerProps,
+  ChronometerState
+> {
   static defaultProps = {
-    buttonsAs: "button"
+    timeFromPastSession: 0
   };
 
-  state: ChronometerState = { elapsedTime: 0, isPlaying: false };
+  state = {
+    startTime: undefined,
+    currentInterval: undefined,
+    elapsedTime: undefined
+  };
 
   componentWillUnmount() {
     this.stop();
@@ -41,56 +43,40 @@ class Chronometer extends React.PureComponent<ChronometerProps> {
     }
   }
 
-  componentDidUpdate(prevProps: ChronometerProps) {
-    if (!prevProps.startNow && this.props.startNow) {
+  componentDidUpdate(previousProps: ChronometerProps) {
+    if (!previousProps.startNow && this.props.startNow) {
       this.play();
     }
   }
 
   play = () => {
-    const interval = setInterval(() => {
-      const elapsedTime = this.state.elapsedTime + STEP_TIME;
+    const startTime = new Date();
+    const currentInterval = setInterval(() => {
+      const elapsedTime = new Date().getTime() - startTime.getTime();
+      if (elapsedTime === 0) debugger;
       this.setState({ elapsedTime });
     }, STEP_TIME);
-    this.setState({ interval, isPlaying: true });
-
-    const { onPlay } = this.props;
-    if (onPlay) onPlay();
+    this.setState({ currentInterval });
   };
 
   stop = () => {
-    const { interval, elapsedTime } = this.state;
-    const { onStop } = this.props;
-    if (interval) {
-      clearInterval(interval);
-      this.setState({ interval: null, isPlaying: false });
-      if (onStop && elapsedTime) onStop(elapsedTime);
+    clearInterval(this.state.currentInterval);
+
+    const { timeFromPastSession } = this.props;
+    const { elapsedTime } = this.state;
+    if (elapsedTime) {
+      this.props.onStop(elapsedTime + timeFromPastSession * 1000);
     }
-  };
-
-  pause = () => {
-    const { interval, elapsedTime } = this.state;
-    if (interval) {
-      clearInterval(interval);
-      this.setState({ interval: null, isPlaying: false });
-    }
-
-    const { onPause } = this.props;
-    if (onPause) onPause(elapsedTime);
-  };
-
-  reset = () => {
-    this.setState({ elapsedTime: 0 });
-
-    const { onReset } = this.props;
-    if (onReset) onReset();
   };
 
   onTwoDigits = (value: number) => value.toString().padStart(2, "0");
 
   renderElapsedTime() {
-    const { elapsedTime } = this.state;
-    const elapsedTimeAsDate = new Date(elapsedTime);
+    const { timeFromPastSession } = this.props;
+    const elapsedTime = this.state.elapsedTime || 0;
+    const elapsedTimeAsDate = new Date(
+      elapsedTime + timeFromPastSession * 1000
+    );
     const formattedTime = [
       elapsedTimeAsDate.getUTCHours(),
       elapsedTimeAsDate.getMinutes(),
@@ -104,42 +90,7 @@ class Chronometer extends React.PureComponent<ChronometerProps> {
   }
 
   render() {
-    const { isPlaying, elapsedTime } = this.state;
-    const {
-      hideAllButtonsWhenStopped,
-      hideStopButton,
-      hideResetButton,
-      buttonsAs: CustomButton
-    } = this.props;
-
-    if (hideAllButtonsWhenStopped && !isPlaying && elapsedTime) {
-      return this.renderElapsedTime();
-    }
-
-    return (
-      <React.Fragment>
-        {this.renderElapsedTime()}
-        {isPlaying ? (
-          <CustomButton role="button" onClick={this.pause} data-testid="pause">
-            ⏸️
-          </CustomButton>
-        ) : (
-          <CustomButton role="button" onClick={this.play} data-testid="play">
-            ▶
-          </CustomButton>
-        )}
-        {!hideStopButton && (
-          <CustomButton role="button" onClick={this.stop} data-testid="stop">
-            ⬛
-          </CustomButton>
-        )}
-        {!hideResetButton && (
-          <CustomButton role="button" onClick={this.reset} data-testid="reset">
-            🔃
-          </CustomButton>
-        )}
-      </React.Fragment>
-    );
+    return <div style={containerStyle}>{this.renderElapsedTime()}</div>;
   }
 }
 

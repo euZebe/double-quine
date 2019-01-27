@@ -1,7 +1,7 @@
 import { GameType } from "../components/DayContext";
 import { action, autorun, observable, toJS } from "mobx";
 
-const NEW_GAME_TEMPLATE = {pickedValues: []};
+const NEW_GAME_TEMPLATE = { pickedValues: [], duration: 0 };
 
 export class GamesStore {
   constructor() {
@@ -17,28 +17,33 @@ export class GamesStore {
 
   private getItemsFromStorage(): GameType[] {
     const values: string[] = Object.values(window.localStorage);
-    return values.map(element => observable(JSON.parse(element))) as GameType[];
+    return values.map(element => observable(JSON.parse(element)));
   }
 
   @observable currentGameIndex: number = -1;
 
   @action
   toggleValue(gameIndex: number, value: number) {
-    const { pickedValues } = this.games[gameIndex];
+    const game = this.games[gameIndex];
+    const { pickedValues } = game;
     const indexOfValue = pickedValues.indexOf(value);
     if (pickedValues.length && indexOfValue === pickedValues.length - 1) {
       // remove last
       const updatedGame = {
+        ...game,
         pickedValues: pickedValues.slice(0, pickedValues.length - 1)
       };
       this.games.splice(gameIndex, 1, updatedGame);
-      // this.persistGame(gameID.toString(), updatedGame);
     } else if (indexOfValue === -1) {
       // if value exists in the array but not at the last place, don't add it
-      const updatedGame = { pickedValues: [...pickedValues, value] };
+      const updatedGame = { ...game, pickedValues: [...pickedValues, value] };
       this.games.splice(gameIndex, 1, updatedGame);
-      // this.persistGame(gameID.toString(), updatedGame);
     }
+  }
+
+  @action
+  setDuration(gameIndex: number, duration: number): void {
+    this.games[gameIndex].duration = Math.floor(duration / 1000); // stores duration in seconds
   }
 
   @action
@@ -54,7 +59,10 @@ export class GamesStore {
   }
 
   private persistGame(gameIndex: number, game: GameType) {
-    if (this.currentGameIndex >= 0 && this.currentGameIndex < this.games.length){
+    if (
+      this.currentGameIndex >= 0 &&
+      this.currentGameIndex < this.games.length
+    ) {
       localStorage.setItem(gameIndex.toString(), JSON.stringify(toJS(game)));
     }
   }
