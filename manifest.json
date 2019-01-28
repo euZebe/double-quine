@@ -1,7 +1,6 @@
 {
   "short_name": "Double quine",
   "name": "Double quine",
-  "description": "une application de suivi des tirages de Quine",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,8 +9,8 @@
     }
   ],
   "start_url": ".",
-  "theme_color": "#B12A34",
-  "background_color": "#B12A34",
-  "display": "fullscreen",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "orientation":  "landscape"
 }
