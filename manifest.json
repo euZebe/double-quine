@@ -1,6 +1,6 @@
 {
-  "short_name": "Double quine",
-  "name": "Double quine",
+  "short_name": "Double-quine",
+  "name": "Double-quine",
   "icons": [
     {
       "src": "favicon.ico",
