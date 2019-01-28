@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "9a2bcf9995b5f89d05ba",
+    "revision": "42aecd35e51f4af0502c",
     "url": "/double-quine/static/css/main.a8fc2ef5.chunk.css"
   },
   {
@@ -28,10 +28,6 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/outline-icons.ef60a4f6.woff"
   },
   {
-    "revision": "9c74e172f87984c48ddf5c8108cabe67",
-    "url": "/double-quine/static/media/flags.9c74e172.png"
-  },
-  {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
     "url": "/double-quine/static/media/outline-icons.701ae6ab.eot"
   },
@@ -40,12 +36,16 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/outline-icons.ad97afd3.ttf"
   },
   {
+    "revision": "9c74e172f87984c48ddf5c8108cabe67",
+    "url": "/double-quine/static/media/flags.9c74e172.png"
+  },
+  {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
     "url": "/double-quine/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "9a2bcf9995b5f89d05ba",
-    "url": "/double-quine/static/js/main.9a2bcf99.chunk.js"
+    "revision": "42aecd35e51f4af0502c",
+    "url": "/double-quine/static/js/main.42aecd35.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -84,7 +84,7 @@ self.__precacheManifest = [
     "url": "/double-quine/static/css/1.c218aac9.chunk.css"
   },
   {
-    "revision": "c4de1fe3fd5cbd0c6d3d821821764f36",
+    "revision": "0630d324fd4e39b2b9755be2b2841f97",
     "url": "/double-quine/index.html"
   }
 ];
