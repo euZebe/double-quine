@@ -1,7 +1,7 @@
 {
   "main.css": "/double-quine/static/css/main.a8fc2ef5.chunk.css",
-  "main.js": "/double-quine/static/js/main.42aecd35.chunk.js",
-  "main.js.map": "/double-quine/static/js/main.42aecd35.chunk.js.map",
+  "main.js": "/double-quine/static/js/main.038c059c.chunk.js",
+  "main.js.map": "/double-quine/static/js/main.038c059c.chunk.js.map",
   "static/css/1.c218aac9.chunk.css": "/double-quine/static/css/1.c218aac9.chunk.css",
   "static/js/1.7b28fb96.chunk.js": "/double-quine/static/js/1.7b28fb96.chunk.js",
   "static/js/1.7b28fb96.chunk.js.map": "/double-quine/static/js/1.7b28fb96.chunk.js.map",
@@ -11,6 +11,6 @@
   "static/css/1.c218aac9.chunk.css.map": "/double-quine/static/css/1.c218aac9.chunk.css.map",
   "static/css/main.a8fc2ef5.chunk.css.map": "/double-quine/static/css/main.a8fc2ef5.chunk.css.map",
   "index.html": "/double-quine/index.html",
-  "precache-manifest.bf02fb7387d683c2eb0a0408732c44a8.js": "/double-quine/precache-manifest.bf02fb7387d683c2eb0a0408732c44a8.js",
+  "precache-manifest.d912a562eb994e9bb313ac0d92904e4b.js": "/double-quine/precache-manifest.d912a562eb994e9bb313ac0d92904e4b.js",
   "service-worker.js": "/double-quine/service-worker.js"
 }
