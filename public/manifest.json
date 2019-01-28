@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Double quine",
+  "name": "Double quine",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,6 +11,6 @@
   "start_url": ".",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation":  "landscape"
 }
