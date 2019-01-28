@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import DevTools from "mobx-react-devtools";
 import GamePage from "./pages/GamePage";
 import { observer, Provider } from "mobx-react";
 import Home from "./pages/Home";
@@ -18,7 +17,6 @@ class App extends React.Component<Props> {
         <Provider gamesStore={this.props.store}>
           <Router>
             <div>
-              <DevTools />
               <Route path="/" exact component={Home} />
               <Route path="/game/:id" component={GamePage} />
             </div>
