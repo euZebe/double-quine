@@ -15,7 +15,7 @@ class App extends React.Component<Props> {
     return (
       <>
         <Provider gamesStore={this.props.store}>
-          <Router>
+          <Router basename={process.env.PUBLIC_URL}>
             <div>
               <Route path="/" exact component={Home} />
               <Route path="/game/:id" component={GamePage} />
