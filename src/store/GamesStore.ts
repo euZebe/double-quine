@@ -16,8 +16,10 @@ export class GamesStore {
   @observable games: GameType[] = this.getItemsFromStorage();
 
   private getItemsFromStorage(): GameType[] {
-    const values: string[] = Object.values(window.localStorage);
-    return values.map(element => observable(JSON.parse(element)));
+    const entries: string[][] = Object.entries(window.localStorage);
+    return entries
+      .filter(([key]) => parseInt(key) >= 0)
+      .map(([key, value]) => observable(JSON.parse(value)));
   }
 
   @observable currentGameIndex: number = -1;
