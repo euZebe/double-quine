@@ -1,16 +1,16 @@
 {
-  "main.css": "/double-quine/static/css/main.c96e113b.chunk.css",
-  "main.js": "/double-quine/static/js/main.21328eed.chunk.js",
-  "main.js.map": "/double-quine/static/js/main.21328eed.chunk.js.map",
+  "main.css": "/double-quine/static/css/main.3a4706b8.chunk.css",
+  "main.js": "/double-quine/static/js/main.0f3789ad.chunk.js",
+  "main.js.map": "/double-quine/static/js/main.0f3789ad.chunk.js.map",
   "static/css/1.dcfd396e.chunk.css": "/double-quine/static/css/1.dcfd396e.chunk.css",
   "static/js/1.5119a0eb.chunk.js": "/double-quine/static/js/1.5119a0eb.chunk.js",
   "static/js/1.5119a0eb.chunk.js.map": "/double-quine/static/js/1.5119a0eb.chunk.js.map",
   "runtime~main.js": "/double-quine/static/js/runtime~main.0d576ef4.js",
   "runtime~main.js.map": "/double-quine/static/js/runtime~main.0d576ef4.js.map",
   "static/media/semantic.min.css": "/double-quine/static/media/brand-icons.a1a749e8.svg",
-  "static/css/main.c96e113b.chunk.css.map": "/double-quine/static/css/main.c96e113b.chunk.css.map",
+  "static/css/main.3a4706b8.chunk.css.map": "/double-quine/static/css/main.3a4706b8.chunk.css.map",
   "static/css/1.dcfd396e.chunk.css.map": "/double-quine/static/css/1.dcfd396e.chunk.css.map",
   "index.html": "/double-quine/index.html",
-  "precache-manifest.d9a3dec3ce4d306558c0a718bc28542b.js": "/double-quine/precache-manifest.d9a3dec3ce4d306558c0a718bc28542b.js",
+  "precache-manifest.ca02166a2aadd3a7c123dd64595e16f0.js": "/double-quine/precache-manifest.ca02166a2aadd3a7c123dd64595e16f0.js",
   "service-worker.js": "/double-quine/service-worker.js"
 }

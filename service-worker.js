@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/double-quine/precache-manifest.d9a3dec3ce4d306558c0a718bc28542b.js"
+  "/double-quine/precache-manifest.ca02166a2aadd3a7c123dd64595e16f0.js"
 );
 
 workbox.clientsClaim();
