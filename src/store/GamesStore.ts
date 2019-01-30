@@ -1,5 +1,6 @@
-import { GameType } from "../components/DayContext";
 import { action, autorun, observable, toJS } from "mobx";
+import { set, keys, get } from "idb-keyval";
+import { GameType } from "../components/DayContext";
 
 const NEW_GAME_TEMPLATE = { pickedValues: [], duration: 0 };
 
@@ -11,15 +12,22 @@ export class GamesStore {
         this.games[this.currentGameIndex]
       );
     });
+
+    this.getItemsFromStorage();
   }
 
-  @observable games: GameType[] = this.getItemsFromStorage();
+  @observable games: GameType[] = [];
 
-  private getItemsFromStorage(): GameType[] {
-    const entries: string[][] = Object.entries(window.localStorage);
-    return entries
-      .filter(([key]) => parseInt(key) >= 0)
-      .map(([key, value]) => observable(JSON.parse(value)));
+  private getItemsFromStorage(): void {
+    keys().then(keys =>
+      Promise.all(keys.map(k => get(k))).then(values => {
+        this.games = values.map((value) => observable(JSON.parse(value.toString())));
+      })
+    );
+    // const entries: string[][] = Object.entries(window.localStorage);
+    // return entries
+    //   .filter(([key]) => parseInt(key) >= 0)
+    //   .map(([key, value]) => observable(JSON.parse(value)));
   }
 
   @observable currentGameIndex: number = -1;
@@ -65,7 +73,7 @@ export class GamesStore {
       this.currentGameIndex >= 0 &&
       this.currentGameIndex < this.games.length
     ) {
-      localStorage.setItem(gameIndex.toString(), JSON.stringify(toJS(game)));
+      set(gameIndex.toString(), JSON.stringify(toJS(game))).catch(console.error);
     }
   }
 }
