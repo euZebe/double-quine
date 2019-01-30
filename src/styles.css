@@ -1,3 +1,9 @@
-.nomargin {
-    margin: 0 !important;
+@media screen and (max-width: 800px) {
+  .numberCell {
+    padding: 0 !important;
+  }
+}
+
+.numberCell {
+  margin: 0 !important;
 }
