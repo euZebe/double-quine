@@ -1,5 +1,5 @@
 import { action, autorun, computed, observable, toJS } from "mobx";
-import { set, keys, get } from "idb-keyval";
+import { set, keys, get, clear } from "idb-keyval";
 import { GameType } from "../components/DayContext";
 import { TableDataType } from "./Types";
 
@@ -64,7 +64,7 @@ export class GamesStore {
   trashAllGames(): void {
     this.games.splice(0, this.games.length);
     this.currentGameIndex = -1;
-    localStorage.clear();
+    clear().catch(console.error);
   }
 
   @computed

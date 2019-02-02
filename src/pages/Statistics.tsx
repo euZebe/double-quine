@@ -14,32 +14,34 @@ class Statistics extends React.Component<StatisticsProps> {
   render() {
     const { gamesStore } = this.props;
     const data = gamesStore.allPickedNumbers;
-    return data.length ? (
+    return (
       <>
         <h1>Statistiques</h1>
         <h2>Toutes parties confondues</h2>
-        <Table
-          data={data}
-          className="-striped -highlight"
-          columns={[
-            { Header: "Numéro", accessor: "value" },
-            { Header: "tirages", accessor: "picked" }
-          ]}
-          defaultPageSize={data.length}
-          showPaginationBottom={false}
-          defaultSorted={[
+        {data.length ? (
+          <Table
+            data={data}
+            className="-striped -highlight"
+            columns={[
+              { Header: "Numéro", accessor: "value" },
+              { Header: "tirages", accessor: "picked" }
+            ]}
+            defaultPageSize={data.length}
+            showPaginationBottom={false}
+            defaultSorted={[
               {
-                  id: "value",
-                  asc: true
+                id: "value",
+                asc: true
               },
               {
-                  id: "picked",
-                  asc: true
+                id: "picked",
+                asc: true
               }
-          ]}
-        />
+            ]}
+          />
+        ) : <em>aucune partie trouvée</em>}
       </>
-    ) : null;
+    );
   }
 }
 
