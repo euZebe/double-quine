@@ -6,6 +6,7 @@ import PickedNumbersList from "../components/PickedNumbersList";
 import NumbersBoard from "../components/NumbersBoard/NumbersBoard";
 import { GameType } from "../components/DayContext";
 import Chronometer from "../components/Chronometer";
+import styled from "styled-components";
 
 interface Props {
   game: GameType;
@@ -14,18 +15,18 @@ interface Props {
   isStarted: boolean;
 }
 
-const containerStyle = {
-  display: "grid",
-  height: "calc(100vh - 28px)",
-  gridTemplateAreas: "'board board' 'list chrono' 'list button'",
-  gridTemplateColumns: "82vw 1fr"
-};
+const Container = styled.div`
+  display: grid;
+  height: calc(100vh - 28px);
+  grid-template-areas: "board board" "list chrono" "list button";
+  grid-template-columns: 82vw 1fr;
+`;
 
-const buttonStyle = {
-  gridArea: "button",
-  alignSelf: "end",
-  justifySelf: "end"
-};
+const StyledLink = styled(Link)`
+  grid-area: button;
+  align-self: end;
+  justify-self: end;
+`;
 
 const GameComponent: React.FunctionComponent<Props> = ({
   game,
@@ -33,7 +34,7 @@ const GameComponent: React.FunctionComponent<Props> = ({
   setDuration,
   handleValuePicked
 }) => (
-  <div style={containerStyle}>
+  <Container>
     <NumbersBoard
       pickedValues={game.pickedValues}
       onValuePicked={handleValuePicked}
@@ -45,10 +46,10 @@ const GameComponent: React.FunctionComponent<Props> = ({
       onStop={setDuration}
       timeFromPastSession={game.duration}
     />
-    <Link to="/" style={buttonStyle}>
+    <StyledLink to="/">
       <Button color="violet">Fin de partie</Button>
-    </Link>
-  </div>
+    </StyledLink>
+  </Container>
 );
 
 export default observer(GameComponent);

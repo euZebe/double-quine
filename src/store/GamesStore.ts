@@ -1,6 +1,7 @@
-import { action, autorun, observable, toJS } from "mobx";
+import { action, autorun, computed, observable, toJS } from "mobx";
 import { set, keys, get } from "idb-keyval";
 import { GameType } from "../components/DayContext";
+import { TableDataType } from "./Types";
 
 const NEW_GAME_TEMPLATE = { pickedValues: [], duration: 0 };
 
@@ -21,13 +22,11 @@ export class GamesStore {
   private getItemsFromStorage(): void {
     keys().then(keys =>
       Promise.all(keys.map(k => get(k))).then(values => {
-        this.games = values.map((value) => observable(JSON.parse(value.toString())));
+        this.games = values.map(value =>
+          observable(JSON.parse(value.toString()))
+        );
       })
     );
-    // const entries: string[][] = Object.entries(window.localStorage);
-    // return entries
-    //   .filter(([key]) => parseInt(key) >= 0)
-    //   .map(([key, value]) => observable(JSON.parse(value)));
   }
 
   @observable currentGameIndex: number = -1;
@@ -68,12 +67,32 @@ export class GamesStore {
     localStorage.clear();
   }
 
+  @computed
+  get allPickedNumbers(): TableDataType[] {
+    const allValuesPicked = this.games
+      .map(g => g.pickedValues)
+      .reduce((agg, array) => [...agg, ...array], [])
+      .reduce((agg: any, value) => {
+        agg[value] = agg[value] ? agg[value] + 1 : 1;
+        return agg;
+      }, {});
+
+    const data = Object.entries(allValuesPicked).map(([value, picked]) => ({
+      value: Number.parseInt(value),
+      picked: Number.parseInt(picked.toString())
+    }));
+
+    return data;
+  }
+
   private persistGame(gameIndex: number, game: GameType) {
     if (
       this.currentGameIndex >= 0 &&
       this.currentGameIndex < this.games.length
     ) {
-      set(gameIndex.toString(), JSON.stringify(toJS(game))).catch(console.error);
+      set(gameIndex.toString(), JSON.stringify(toJS(game))).catch(
+        console.error
+      );
     }
   }
 }

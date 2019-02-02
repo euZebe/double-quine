@@ -1,10 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Header } from "semantic-ui-react";
 import { GamesStore } from "../store/GamesStore";
-import TrashIcon from "../components/TrashIcon";
 import GameCard from "../components/GameCard";
 import NewGameCard from "../components/NewGameCard";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function handleTrashAll(gameStore: GamesStore) {
   if (window.confirm("Voulez-vous supprimer toutes les parties ?")) {
@@ -12,32 +13,34 @@ function handleTrashAll(gameStore: GamesStore) {
   }
 }
 
-const clearAllStyle = {
-  position: "fixed",
-  bottom: "20px",
-  right: "20px",
-  borderRadius: "2rem",
-  margin: 0,
-  maxWidth: "56px",
-  maxHeight: "56px"
-};
+const RightPanel = styled.div`
+  float: right;
+`;
 
 const Home: React.FunctionComponent<{ gamesStore: GamesStore }> = ({
   gamesStore
 }) => (
   <>
-    <Button
-      as="div"
-      color="violet"
-      role="button"
-      aria-label="clear all games"
-      tabIndex={0}
-      style={clearAllStyle}
-      onClick={() => handleTrashAll(gamesStore)}
-    >
-      <TrashIcon />
-    </Button>
-    <Card.Group>
+    <Header as="div">
+      Double-quine
+      <RightPanel>
+        <Link to="/stats">
+          <Button basic color="violet">
+            statistiques
+          </Button>
+        </Link>
+        <Button
+          color="red"
+          basic
+          aria-label="clear all games"
+          tabIndex={0}
+          onClick={() => handleTrashAll(gamesStore)}
+        >
+          tout supprimer
+        </Button>
+      </RightPanel>
+    </Header>
+    <Card.Group className="fullWidth">
       {gamesStore.games &&
         [
           ...gamesStore.games.map((game, index) => (

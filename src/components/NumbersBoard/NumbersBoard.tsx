@@ -1,7 +1,8 @@
 import * as React from "react";
-import _isEqual from 'lodash/isEqual';
+import _isEqual from "lodash/isEqual";
 import NumberCell, { CellProps } from "./NumberCell";
 import { ReactElement } from "react";
+import styled from "styled-components";
 
 interface NumbersBoardProps {
   pickedValues: number[];
@@ -9,34 +10,35 @@ interface NumbersBoardProps {
   onValuePicked: (value: number) => void;
 }
 
-const RowStyle = {
-  display: "flex",
-  justifyContent: "space-between"
-};
+const BaseRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-class Row extends React.Component<{children: ReactElement<CellProps>[]}> {
+class Row extends React.Component<{ children: ReactElement<CellProps>[] }> {
   getOnProp = (c: any) => c.props.on;
   shouldComponentUpdate(nextProps: any) {
-    return !_isEqual(nextProps.children.map(this.getOnProp), this.props.children.map(this.getOnProp));
+    return !_isEqual(
+      nextProps.children.map(this.getOnProp),
+      this.props.children.map(this.getOnProp)
+    );
   }
 
   render() {
     const { children } = this.props;
-    return <div style={RowStyle}>{children}</div>;
+    return <BaseRow>{children}</BaseRow>;
   }
 }
 
-const containerStyle = {
-  gridArea: "board"
-}
-
+const Container = styled.div`
+  grid-area: board;
+`;
 class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
-
   render() {
     const { pickedValues, onValuePicked } = this.props;
     const { rows = 9 } = this.props;
     return (
-      <div style={containerStyle}>
+      <Container>
         {Array(rows)
           .fill(null)
           .map((_: number, rowIndex: number) => {
@@ -58,7 +60,7 @@ class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
               </Row>
             );
           })}
-      </div>
+      </Container>
     );
   }
 }

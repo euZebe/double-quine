@@ -1,9 +1,12 @@
 import * as React from "react";
 import { Button } from "semantic-ui-react";
 import PickedNumber from "../PickedNumber";
+import styled from "styled-components";
 
-const containerStyle = { display: "flex", justifyContent: "center" };
-
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export interface CellProps {
   value: number;
   on: boolean;
@@ -19,9 +22,9 @@ export default class NumberCell extends React.PureComponent<CellProps> {
   render() {
     return (
       <Button onClick={this.handleClick} basic fluid className="numberCell">
-        <div style={containerStyle}>
+        <Container>
           <PickedNumber {...this.props} />
-        </div>
+        </Container>
       </Button>
     );
   }

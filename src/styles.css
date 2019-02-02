@@ -7,3 +7,17 @@
 .numberCell {
   margin: 0 !important;
 }
+
+#clearAllButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 2rem;
+  margin: 0;
+  max-width: 56px;
+  max-height: 56px;
+}
+
+.fullWidth {
+  width: 100vw;
+}

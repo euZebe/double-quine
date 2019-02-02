@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface ChronometerProps {
   onStop: (duration: number) => void;
@@ -13,11 +14,11 @@ interface ChronometerState {
 
 const STEP_TIME = 1000;
 
-const containerStyle = {
-  gridArea: "chrono",
-  alignSelf: "start",
-  justifySelf: "end"
-};
+const Container = styled.div`
+  grid-area: chrono;
+  align-self: start;
+  justify-self: end;
+`;
 
 class Chronometer extends React.PureComponent<
   ChronometerProps,
@@ -90,7 +91,7 @@ class Chronometer extends React.PureComponent<
   }
 
   render() {
-    return <div style={containerStyle}>{this.renderElapsedTime()}</div>;
+    return <Container>{this.renderElapsedTime()}</Container>;
   }
 }
 
