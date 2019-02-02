@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "cb8f4a027a05d7db378e",
+    "revision": "e0dbc9f9491ff4d91a76",
     "url": "/double-quine/static/css/main.d8228642.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/brand-icons.a1a749e8.svg"
   },
   {
-    "revision": "c084375afea0c226e7fe",
-    "url": "/double-quine/static/js/1.c084375a.chunk.js"
+    "revision": "8e8dcf1045b019bee6ed",
+    "url": "/double-quine/static/js/1.8e8dcf10.chunk.js"
   },
   {
     "revision": "0d576ef4e97ada0886a8",
@@ -28,6 +28,10 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/outline-icons.ef60a4f6.woff"
   },
   {
+    "revision": "9c74e172f87984c48ddf5c8108cabe67",
+    "url": "/double-quine/static/media/flags.9c74e172.png"
+  },
+  {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
     "url": "/double-quine/static/media/outline-icons.701ae6ab.eot"
   },
@@ -36,16 +40,12 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/outline-icons.ad97afd3.ttf"
   },
   {
-    "revision": "9c74e172f87984c48ddf5c8108cabe67",
-    "url": "/double-quine/static/media/flags.9c74e172.png"
-  },
-  {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
     "url": "/double-quine/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "cb8f4a027a05d7db378e",
-    "url": "/double-quine/static/js/main.cb8f4a02.chunk.js"
+    "revision": "e0dbc9f9491ff4d91a76",
+    "url": "/double-quine/static/js/main.e0dbc9f9.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -56,16 +56,16 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/brand-icons.a046592b.woff"
   },
   {
-    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
-    "url": "/double-quine/static/media/icons.b87b9ba5.ttf"
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/double-quine/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/double-quine/static/media/brand-icons.13db00b7.eot"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/double-quine/static/media/icons.8e3c7f55.eot"
+    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
+    "url": "/double-quine/static/media/icons.b87b9ba5.ttf"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -80,11 +80,11 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "c084375afea0c226e7fe",
+    "revision": "8e8dcf1045b019bee6ed",
     "url": "/double-quine/static/css/1.1f1a5f7e.chunk.css"
   },
   {
-    "revision": "f3fb5b2f3779ef725309d269a69852c8",
+    "revision": "a9ade8c85b87262b9a17fe61d6911e3e",
     "url": "/double-quine/index.html"
   }
 ];
