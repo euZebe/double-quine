@@ -1,7 +1,6 @@
 import { action, autorun, computed, observable, toJS } from "mobx";
 import { set, keys, get, clear } from "idb-keyval";
 import { GameType } from "../components/DayContext";
-import { TableDataType } from "./Types";
 
 const NEW_GAME_TEMPLATE = { pickedValues: [], duration: 0 };
 
@@ -68,21 +67,14 @@ export class GamesStore {
   }
 
   @computed
-  get allPickedNumbers(): TableDataType[] {
-    const allValuesPicked = this.games
+  get allPickedNumbers() {
+    return this.games
       .map(g => g.pickedValues)
       .reduce((agg, array) => [...agg, ...array], [])
       .reduce((agg: any, value) => {
         agg[value] = agg[value] ? agg[value] + 1 : 1;
         return agg;
       }, {});
-
-    const data = Object.entries(allValuesPicked).map(([value, picked]) => ({
-      value: Number.parseInt(value),
-      picked: Number.parseInt(picked.toString())
-    }));
-
-    return data;
   }
 
   private persistGame(gameIndex: number, game: GameType) {

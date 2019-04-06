@@ -50,7 +50,8 @@ class GamePage extends React.Component<
   };
 
   render() {
-    const { games } = this.props.gamesStore;
+    const { gamesStore } = this.props;
+    const { games } = gamesStore;
     if (this.getIDAsNumber() >= games.length) return "";
     const game = games[this.getIDAsNumber()];
     const { isStarted } = this.state;

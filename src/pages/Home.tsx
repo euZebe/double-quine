@@ -5,7 +5,6 @@ import { GamesStore } from "../store/GamesStore";
 import GameCard from "../components/GameCard";
 import NewGameCard from "../components/NewGameCard";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 function handleTrashAll(gameStore: GamesStore) {
   if (window.confirm("Voulez-vous supprimer toutes les parties ?")) {
@@ -24,11 +23,6 @@ const Home: React.FunctionComponent<{ gamesStore: GamesStore }> = ({
     <Header as="div">
       Double-quine
       <RightPanel>
-        <Link to="/stats">
-          <Button basic color="violet">
-            statistiques
-          </Button>
-        </Link>
         <Button
           color="red"
           basic

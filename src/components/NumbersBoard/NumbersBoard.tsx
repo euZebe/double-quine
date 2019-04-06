@@ -1,13 +1,17 @@
 import * as React from "react";
 import _isEqual from "lodash/isEqual";
-import NumberCell, { CellProps } from "./NumberCell";
+import { CellProps } from "./NumberCell";
 import { ReactElement } from "react";
 import styled from "styled-components";
+import StatisticsCell from "./StatisticsCell";
+import { inject, observer } from "mobx-react";
+import { GamesStore } from "../../store/GamesStore";
 
 interface NumbersBoardProps {
   pickedValues: number[];
   rows?: number;
   onValuePicked: (value: number) => void;
+  gamesStore?: GamesStore;
 }
 
 const BaseRow = styled.div`
@@ -33,9 +37,16 @@ class Row extends React.Component<{ children: ReactElement<CellProps>[] }> {
 const Container = styled.div`
   grid-area: board;
 `;
-class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
+
+@inject("gamesStore")
+@observer
+class NumbersBoard extends React.Component<NumbersBoardProps> {
+  static defaultProps = {
+    gamesStore: null
+  };
+
   render() {
-    const { pickedValues, onValuePicked } = this.props;
+    const { pickedValues, onValuePicked, gamesStore } = this.props;
     const { rows = 9 } = this.props;
     return (
       <Container>
@@ -49,11 +60,12 @@ class NumbersBoard extends React.PureComponent<NumbersBoardProps> {
                   .map((_: number, cellIndex: number) => {
                     const value = rowIndex * 10 + cellIndex + 1;
                     return (
-                      <NumberCell
+                      <StatisticsCell
                         key={cellIndex}
                         value={value}
                         on={pickedValues.includes(value)}
                         toggleNumber={onValuePicked}
+                        timesPicked={gamesStore ? gamesStore.allPickedNumbers[value] : 0}
                       />
                     );
                   })}
