@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "e0dbc9f9491ff4d91a76",
-    "url": "/double-quine/static/css/main.d8228642.chunk.css"
+    "revision": "7e445e14316b1134b08c",
+    "url": "/double-quine/static/css/main.b9e23e67.chunk.css"
   },
   {
     "revision": "a1a749e89f578a49306ec2b055c073da",
     "url": "/double-quine/static/media/brand-icons.a1a749e8.svg"
   },
   {
-    "revision": "8e8dcf1045b019bee6ed",
-    "url": "/double-quine/static/js/1.8e8dcf10.chunk.js"
+    "revision": "f81713d4c86111d45571",
+    "url": "/double-quine/static/js/1.f81713d4.chunk.js"
   },
   {
     "revision": "0d576ef4e97ada0886a8",
@@ -28,24 +28,24 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/outline-icons.ef60a4f6.woff"
   },
   {
-    "revision": "9c74e172f87984c48ddf5c8108cabe67",
-    "url": "/double-quine/static/media/flags.9c74e172.png"
+    "revision": "ad97afd3337e8cda302d10ff5a4026b8",
+    "url": "/double-quine/static/media/outline-icons.ad97afd3.ttf"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
     "url": "/double-quine/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "ad97afd3337e8cda302d10ff5a4026b8",
-    "url": "/double-quine/static/media/outline-icons.ad97afd3.ttf"
+    "revision": "9c74e172f87984c48ddf5c8108cabe67",
+    "url": "/double-quine/static/media/flags.9c74e172.png"
   },
   {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
     "url": "/double-quine/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "e0dbc9f9491ff4d91a76",
-    "url": "/double-quine/static/js/main.e0dbc9f9.chunk.js"
+    "revision": "7e445e14316b1134b08c",
+    "url": "/double-quine/static/js/main.7e445e14.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -80,11 +80,11 @@ self.__precacheManifest = [
     "url": "/double-quine/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "8e8dcf1045b019bee6ed",
-    "url": "/double-quine/static/css/1.1f1a5f7e.chunk.css"
+    "revision": "f81713d4c86111d45571",
+    "url": "/double-quine/static/css/1.2ce7e006.chunk.css"
   },
   {
-    "revision": "a9ade8c85b87262b9a17fe61d6911e3e",
+    "revision": "39471a2296d9089077b039cfcfb62966",
     "url": "/double-quine/index.html"
   }
 ];
